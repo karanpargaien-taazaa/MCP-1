@@ -9,7 +9,7 @@ namespace MCP.Application
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddMcpServices(this IServiceCollection services)
+        public static IServiceCollection AddMcp(this IServiceCollection services)
         {
             // Lease intent pipeline
             services.AddScoped<IEntityExtractor<LeaseEntityInput>, LeaseEntityExtractor>();
