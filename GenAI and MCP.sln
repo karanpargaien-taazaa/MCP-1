@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36025.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCP", "MCP\MCP.csproj", "{61D15E5B-4CB1-5F64-E753-67046185B6B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenAI", "GenAI\GenAI.csproj", "{83169A9E-32A5-41EF-2991-DB4CFAEFEEFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innago_4FF", "..\AI and MCP\Innago_4FF\Innago_4FF.csproj", "{6B7B9F93-305D-56B6-9C1C-7BB6507D8F57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61D15E5B-4CB1-5F64-E753-67046185B6B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D15E5B-4CB1-5F64-E753-67046185B6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D15E5B-4CB1-5F64-E753-67046185B6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D15E5B-4CB1-5F64-E753-67046185B6B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83169A9E-32A5-41EF-2991-DB4CFAEFEEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83169A9E-32A5-41EF-2991-DB4CFAEFEEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83169A9E-32A5-41EF-2991-DB4CFAEFEEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83169A9E-32A5-41EF-2991-DB4CFAEFEEFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B7B9F93-305D-56B6-9C1C-7BB6507D8F57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7B9F93-305D-56B6-9C1C-7BB6507D8F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7B9F93-305D-56B6-9C1C-7BB6507D8F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7B9F93-305D-56B6-9C1C-7BB6507D8F57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBB51092-032D-4B65-80AD-6E335712BE1C}
+	EndGlobalSection
+EndGlobal

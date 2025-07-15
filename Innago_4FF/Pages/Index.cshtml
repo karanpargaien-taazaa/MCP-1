@@ -1,0 +1,142 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>Properties</h1>
+<ul>
+    @foreach (var property in Model.Properties)
+    {
+        <li>
+            <strong>@property.Name</strong>
+        </li>
+    }
+</ul>
+
+<h1>Units</h1>
+<ul>
+    @foreach (var property in Model.Units)
+    {
+        <li>
+            <strong>@property.Name</strong>
+        </li>
+    }
+</ul>
+
+<h1>Tenants</h1>
+<ul>
+    @foreach (var property in Model.Tenants)
+    {
+        <li>
+            <strong>@property.Name</strong>
+        </li>
+    }
+</ul>
+
+<form method="post" id="speechForm">
+    <div style="margin-bottom:1em;">
+        <input asp-for="UserInput" class="form-control" id="userInput" placeholder="Type or use mic..." autocomplete="off" />
+        <button type="button" class="btn btn-primary" id="micBtn" title="Speak">🎤 Speak</button>
+        <button type="submit" class="btn btn-secondary">Ask</button>
+    </div>
+</form>
+
+@if (Model.LeaseResponse != null)
+{
+    var property = Model.Properties.FirstOrDefault(p => p.PropertyId == Model.LeaseResponse.PropertyId);
+    var unit = Model.Units.FirstOrDefault(u => u.UnitId == Model.LeaseResponse.UnitId);
+    var firstTenant = Model.LeaseResponse.Tenants?.FirstOrDefault();
+
+    <div class="alert alert-info">
+        <strong>Lease Details:</strong>
+        <ul>
+            <li><strong>Property Name:</strong> @property?.Name</li>
+            <li><strong>Unit Name:</strong> @unit?.Name</li>
+            <li><strong>Lease Start:</strong> @Model.LeaseResponse.StartDate.ToString("yyyy-MM-dd")</li>
+            <li><strong>Lease End:</strong> @Model.LeaseResponse.EndDate.ToString("yyyy-MM-dd")</li>
+            @if (firstTenant != null)
+            {
+                <li>
+                    <strong>First Tenant:</strong>
+                    @firstTenant.FirstName @firstTenant.LastName
+                </li>
+                <li>
+                    <strong>Tenant Email:</strong>
+                    @firstTenant.Email
+                </li>
+            }
+        </ul>
+        <button type="button" class="btn btn-link" id="toggleJsonBtn" style="padding:0;">
+            <span class="arrow">&#x25BC;</span> Show JSON
+        </button>
+        <div id="jsonContainer" style="display:none;">
+            <pre>@System.Text.Json.JsonSerializer.Serialize(Model.LeaseResponse, new System.Text.Json.JsonSerializerOptions { WriteIndented = true })</pre>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Speech-to-text
+            const micBtn = document.getElementById('micBtn');
+            const userInput = document.getElementById('userInput');
+            if (micBtn && userInput) {
+                let recognition;
+                if ('webkitSpeechRecognition' in window) {
+                    recognition = new webkitSpeechRecognition();
+                } else if ('SpeechRecognition' in window) {
+                    recognition = new SpeechRecognition();
+                }
+
+                if (recognition) {
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+                    recognition.lang = 'en-US';
+
+                    micBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        recognition.start();
+                        micBtn.disabled = true;
+                        micBtn.textContent = '🎤 Listening...';
+                    });
+
+                    recognition.onresult = function (event) {
+                        const transcript = event.results[0][0].transcript;
+                        userInput.value = transcript;
+                        micBtn.disabled = false;
+                        micBtn.textContent = '🎤 Speak';
+                    };
+
+                    recognition.onerror = function () {
+                        micBtn.disabled = false;
+                        micBtn.textContent = '🎤 Speak';
+                    };
+
+                    recognition.onend = function () {
+                        micBtn.disabled = false;
+                        micBtn.textContent = '🎤 Speak';
+                    };
+                } else {
+                    micBtn.disabled = true;
+                    micBtn.title = "Speech recognition not supported in this browser.";
+                }
+            }
+
+            // JSON toggle
+            const toggleBtn = document.getElementById('toggleJsonBtn');
+            const jsonContainer = document.getElementById('jsonContainer');
+            const arrow = toggleBtn.querySelector('.arrow');
+
+            if (toggleBtn && jsonContainer && arrow) {
+                toggleBtn.addEventListener('click', function () {
+                    const isHidden = jsonContainer.style.display === 'none';
+                    jsonContainer.style.display = isHidden ? 'block' : 'none';
+                    arrow.innerHTML = isHidden ? '&#x25B2;' : '&#x25BC;';
+                    toggleBtn.innerHTML = `<span class="arrow">${arrow.innerHTML}</span> ${isHidden ? 'Hide' : 'Show'} JSON`;
+                });
+            }
+        });
+    </script>
+}
