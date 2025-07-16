@@ -9,7 +9,12 @@ namespace MCP.Application
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddMcpServices(this IServiceCollection services)
+        /// <summary>
+        /// Registers MCP services for the dependency injection container, including the lease intent pipeline and intent router.
+        /// </summary>
+        /// <param name="services">The service collection to add MCP services to.</param>
+        /// <returns>The service collection with MCP services registered.</returns>
+        public static IServiceCollection AddMcp(this IServiceCollection services)
         {
             // Lease intent pipeline
             services.AddScoped<IEntityExtractor<LeaseEntityInput>, LeaseEntityExtractor>();

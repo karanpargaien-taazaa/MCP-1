@@ -20,7 +20,7 @@ namespace Innago_4FF
                 .BindConfiguration("Mistral")
                 .ValidateDataAnnotations();
             builder.Services.AddHttpClient<IGenAI, Mistral>();
-            builder.Services.AddMcpServices();
+            builder.Services.AddMcp();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
