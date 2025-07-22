@@ -1,8 +1,8 @@
 namespace MCP.Contracts
 {
-    public interface IIntentHandler<BaseIntentHandlerResponse>
+    public interface IIntentHandler<BaseIntentResponse>
     {
         string IntentName { get; }
-        new Task<BaseIntentHandlerResponse> HandleAsync(string userInput);
+        new Task<BaseIntentResponse> HandleAsync(string userInput);
     }
 }

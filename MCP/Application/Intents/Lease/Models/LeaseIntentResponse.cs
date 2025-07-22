@@ -2,7 +2,7 @@ using GenAI;
 using MCP.Models;
 namespace MCP.Application.Intents.Lease.Models
 {
-    public class LeaseIntentResponse : BaseIntentHandlerResponse, IGenAIResponse<LeaseIntentResponse>
+    public class LeaseIntentResponse : BaseIntentResponse, IGenAIResponse<LeaseIntentResponse>
     {
         public int? PropertyId { get; set; }
         public int? UnitId { get; set; }

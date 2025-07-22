@@ -5,7 +5,7 @@ using MCP.Models;
 
 namespace MCP.Application.Intents.Lease
 {
-    public class LeaseIntentHandler : IIntentHandler<BaseIntentHandlerResponse>
+    public class LeaseIntentHandler : IIntentHandler<BaseIntentResponse>
     {
         public string IntentName => "create_lease";
 
@@ -26,7 +26,7 @@ namespace MCP.Application.Intents.Lease
             _genAI = genAI;
         }
 
-        public async Task<BaseIntentHandlerResponse> HandleAsync(string userInput)
+        public async Task<BaseIntentResponse> HandleAsync(string userInput)
         {
             var extracted = await _extractor.ExtractEntitiesAsync(userInput);
             var resolved = await _resolver.ResolveAsync(extracted);
