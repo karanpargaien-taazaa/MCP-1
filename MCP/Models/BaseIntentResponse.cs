@@ -1,9 +1,9 @@
 ﻿namespace MCP.Models
 {
-    public class BaseIntentHandlerResponse
+    public class BaseIntentResponse
     {
         public ResponseData ResponseData { get; set; }
-        public BaseIntentHandlerResponse()
+        public BaseIntentResponse()
         {
             ResponseData = new ResponseData
             {

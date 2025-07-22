@@ -5,8 +5,8 @@ namespace MCP.Application.Router
 {
     public class IntentRouter : IIntentRouter
     {
-        private readonly IEnumerable<IIntentHandler<BaseIntentHandlerResponse>> _leaseIntentHandlers;
-        public IntentRouter(IEnumerable<IIntentHandler<BaseIntentHandlerResponse>> intentHandlers)
+        private readonly IEnumerable<IIntentHandler<BaseIntentResponse>> _leaseIntentHandlers;
+        public IntentRouter(IEnumerable<IIntentHandler<BaseIntentResponse>> intentHandlers)
         {
             _leaseIntentHandlers = intentHandlers;
         }

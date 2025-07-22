@@ -20,7 +20,7 @@ namespace MCP.Application
             services.AddScoped<IEntityExtractor<LeaseEntityInput>, LeaseEntityExtractor>();
             services.AddScoped<IContextResolver<LeaseEntityInput, LeaseContextResolved>, LeaseContextResolver>();
             services.AddScoped<IPromptContextBuilder<LeaseContextResolved, LeaseIntentResponse>, LeasePromptContextBuilder>();
-            services.AddScoped<IIntentHandler<BaseIntentHandlerResponse>, LeaseIntentHandler>();
+            services.AddScoped<IIntentHandler<BaseIntentResponse>, LeaseIntentHandler>();
 
             // Intent router
             services.AddScoped<IIntentRouter, IntentRouter>();
